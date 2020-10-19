@@ -1,0 +1,36 @@
+﻿<Window x:Class="_3dprobe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3dprobe"
+        mc:Ignorable="d"
+        Title="3D프로브" Height="450" Width="800" Closing="Window_Closing">
+	<TabControl x:Name="TabControlProbes" Margin="8">
+		<TabControl.ItemTemplate>
+			<DataTemplate DataType="local:IProber">
+				<TextBlock Text="{Binding Path=Name}" />
+			</DataTemplate>
+        </TabControl.ItemTemplate>
+		<TabControl.ContentTemplate>
+			<DataTemplate DataType="local:IProber">
+				<Grid Margin="8">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="32" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<ComboBox x:Name="ComboBoxProbe" Grid.Row="0" ItemsSource="{Binding Probes}" Margin="0,0,0,8">
+						<ComboBox.ItemTemplate>
+							<DataTemplate DataType="local:IProbe">
+								<TextBlock Text="{Binding Path=DeviceName}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<ScrollViewer Grid.Row="1">
+						<local:ProbeViewer Source="{Binding ElementName=ComboBoxProbe, Path=SelectedItem}" />
+					</ScrollViewer>
+				</Grid>
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+    </TabControl>
+</Window>
