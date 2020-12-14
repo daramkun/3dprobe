@@ -25,7 +25,7 @@ namespace _3dprobe.Probes
 		[SectionName("셰이더")] public ShaderProbe Shader;
 		[SectionName("커서")] public CursorProbe Cursor;
 		[SectionName("갱신주기")] public PresentationIntervalsProbe PresentationIntervals;
-		[SectionName("Z테스트")] public ZTestProbe ZTest;
+		[SectionName("깊이 테스트")] public ZTestProbe ZTest;
 		[SectionName("블렌드원본")] public BlendProbe SourceBlend;
 		[SectionName("블렌드대상")] public BlendProbe DestinationBlend;
 		[SectionName("알바비교")] public AlphaCompareProbe AlphaCompare;
@@ -79,17 +79,17 @@ namespace _3dprobe.Probes
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Caps1Probe
 		{
-			[ItemDescription("오버레이", "오버레이 지원 여부")]
+			[ItemDescription("오버레이", "오버레이 DDI 지원 여부")]
 			public bool Overlay;
 
-			[ItemDescription("스캔라인 읽기", "스캔라인 읽기 여부")]
+			[ItemDescription("주사선 읽기", "디스플레이의 현재 주사선 읽기 가능 여부")]
 			public bool ReadScanline;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Caps2Probe
 		{
-			[ItemDescription("밉맵 자동 생성", "밉맵 자동 생성 여부")]
+			[ItemDescription("밉맵 자동 생성", "텍스처의 밉맵 자동 생성 가능 여부. 지원하지 않으면 밉맵 텍스처를 수동으로 생성해야 함.")]
 			public bool AutoGenerationMipmap;
 
 			[ItemDescription("감마 보정", "감마 보정 여부")] public bool CalibrateGamma;
@@ -326,47 +326,47 @@ namespace _3dprobe.Probes
 		[StructLayout(LayoutKind.Sequential)]
 		public struct ZTestProbe
 		{
-			[ItemDescription(null, null)] public bool PassAlways;
-			[ItemDescription(null, null)] public bool NeverPass;
-			[ItemDescription(null, null)] public bool PassEqual;
-			[ItemDescription(null, null)] public bool PassNotEqual;
-			[ItemDescription(null, null)] public bool PassGreater;
-			[ItemDescription(null, null)] public bool PassGreaterEqual;
-			[ItemDescription(null, null)] public bool PassLess;
-			[ItemDescription(null, null)] public bool PassLessEqual;
+			[ItemDescription("항상 통과", null)] public bool PassAlways;
+			[ItemDescription("통과 불가", null)] public bool NeverPass;
+			[ItemDescription("같을 때 통과", null)] public bool PassEqual;
+			[ItemDescription("다를 때 통과", null)] public bool PassNotEqual;
+			[ItemDescription("클 때 통과", null)] public bool PassGreater;
+			[ItemDescription("크거나 같을 때 통과", null)] public bool PassGreaterEqual;
+			[ItemDescription("작을 때 통과", null)] public bool PassLess;
+			[ItemDescription("작거나 같을 때 통과", null)] public bool PassLessEqual;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct BlendProbe
 		{
-			[ItemDescription(null, null)] public bool BlendFactor;
-			[ItemDescription(null, null)] public bool BlendOperandZero;
-			[ItemDescription(null, null)] public bool BlendOperandOne;
-			[ItemDescription(null, null)] public bool BlendOperandSourceColor;
-			[ItemDescription(null, null)] public bool BlendOperandInvertedSourceColor;
-			[ItemDescription(null, null)] public bool BlendOperandSourceAlpha;
-			[ItemDescription(null, null)] public bool BlendOperandInvertedSourceAlpha;
-			[ItemDescription(null, null)] public bool BlendOperandDestinationAlpha;
-			[ItemDescription(null, null)] public bool BlendOperandInvertedDestinationAlpha;
-			[ItemDescription(null, null)] public bool BlendOperandDestinationColor;
-			[ItemDescription(null, null)] public bool BlendOperandInvertedDestinationColor;
-			[ItemDescription(null, null)] public bool BlendOperandSourceAlphaSaturate;
-			[ItemDescription(null, null)] public bool BlendOperandBothSourceAlpha;
-			[ItemDescription(null, null)] public bool BlendOperandBothInvertedSourceAlpha;
+			[ItemDescription("블렌드 계수", null)] public bool BlendFactor;
+			[ItemDescription("블렌드 피연산자 - 0", null)] public bool BlendOperandZero;
+			[ItemDescription("블렌드 피연산자 - 1", null)] public bool BlendOperandOne;
+			[ItemDescription("블렌드 피연산자 - 원본 색상", null)] public bool BlendOperandSourceColor;
+			[ItemDescription("블렌드 피연산자 - 반전된 원본 색상", null)] public bool BlendOperandInvertedSourceColor;
+			[ItemDescription("블렌드 피연산자 - 원본 투명도", null)] public bool BlendOperandSourceAlpha;
+			[ItemDescription("블렌드 피연산자 - 반전된 원본 투명도", null)] public bool BlendOperandInvertedSourceAlpha;
+			[ItemDescription("블렌드 피연산자 - 대상 투명도", null)] public bool BlendOperandDestinationAlpha;
+			[ItemDescription("블렌드 피연산자 - 반전된 대상 투명도", null)] public bool BlendOperandInvertedDestinationAlpha;
+			[ItemDescription("블렌드 피연산자 - 대상 색상", null)] public bool BlendOperandDestinationColor;
+			[ItemDescription("블렌드 피연산자 - 반전된 대상 색상", null)] public bool BlendOperandInvertedDestinationColor;
+			[ItemDescription("블렌드 피연산자 - 범위 내 원본 투명도", null)] public bool BlendOperandSourceAlphaSaturate;
+			[ItemDescription("블렌드 피연산자 - 양쪽 원본 투명도", null)] public bool BlendOperandBothSourceAlpha;
+			[ItemDescription("블렌드 피연산자 - 양쪽 반전된 양쪽 투명도", null)] public bool BlendOperandBothInvertedSourceAlpha;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AlphaCompareProbe
 		{
-			[ItemDescription(null, null)] public bool SupportAlphaCompare;
-			[ItemDescription(null, null)] public bool AlphaCompareAlways;
-			[ItemDescription(null, null)] public bool AlphaCompareNever;
-			[ItemDescription(null, null)] public bool AlphaCompareEqual;
-			[ItemDescription(null, null)] public bool AlphaCompareNotEqual;
-			[ItemDescription(null, null)] public bool AlphaCompareLess;
-			[ItemDescription(null, null)] public bool AlphaCompareLessEqual;
-			[ItemDescription(null, null)] public bool AlphaCompareGreater;
-			[ItemDescription(null, null)] public bool AlphaCompareGreaterEqual;
+			[ItemDescription("투명도 비교 지원", null)] public bool SupportAlphaCompare;
+			[ItemDescription("투명도 비교 - 항상", null)] public bool AlphaCompareAlways;
+			[ItemDescription("투명도 비교 - 절대", null)] public bool AlphaCompareNever;
+			[ItemDescription("투명도 비교 - 같음", null)] public bool AlphaCompareEqual;
+			[ItemDescription("투명도 비교 - 같지 않음", null)] public bool AlphaCompareNotEqual;
+			[ItemDescription("투명도 비교 - 작음", null)] public bool AlphaCompareLess;
+			[ItemDescription("투명도 비교 - 작거나 같음", null)] public bool AlphaCompareLessEqual;
+			[ItemDescription("투명도 비교 - 큼", null)] public bool AlphaCompareGreater;
+			[ItemDescription("투명도 비교 - 크거나 같음", null)] public bool AlphaCompareGreaterEqual;
 		}
 	}
 

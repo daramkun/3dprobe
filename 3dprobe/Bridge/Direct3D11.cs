@@ -15,8 +15,7 @@ namespace _3dprobe.Bridge
 	{
 		[DllImport("d3d11.dll", CallingConvention = CallingConvention.StdCall)]
 		public static extern int D3D11CreateDevice(
-			[MarshalAs(UnmanagedType.Interface)]
-			IDXGIAdapter pAdapter,
+			[MarshalAs(UnmanagedType.Interface)] IDXGIAdapter pAdapter,
 			D3D_DRIVER_TYPE DriverType,
 			IntPtr Software,
 			D3D11_CREATE_DEVICE_FLAG Flags,
@@ -237,108 +236,98 @@ namespace _3dprobe.Bridge
 			D3D11_FEATURE_D3D11_OPTIONS5 = (D3D11_FEATURE_SHADER_CACHE + 1)
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_THREADING
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)]
+			[ItemDescription("병렬 생성", "드라이버에서 리소스를 병렬적으로 생성이 가능한지 여부입니다. 지원하지 않으면 리소스를 즉시 컨텍스트에서만 생성할 수 있습니다.")]
 			public bool DriverConcurrentCreates;
-			[MarshalAs (UnmanagedType.Bool)]
+
+			[MarshalAs(UnmanagedType.Bool)]
+			[ItemDescription("명령 리스트", "드라이버에서 명령 리스트를 지원하지 않는다면 Direct3D 11에서 지연 컨텍스트의 명령 리스트를 소프트웨어 방식으로 에뮬레이션합니다.")]
 			public bool DriverCommandLists;
 		}
 
 		public struct D3D11_FEATURE_DATA_DOUBLES
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("64비트 부동소수점 셰이더 연산", null)]
 			public bool DoublePrecisionFloatShaderOps;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT
 		{
 			public DXGI_FORMAT InFormat;
 			public UINT OutFormatSupport;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_FORMAT_SUPPORT2
 		{
 			public DXGI_FORMAT InFormat;
 			public UINT OutFormatSupport2;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS
 		{
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x;
+			[MarshalAs(UnmanagedType.Bool)] public bool ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("출력 병합기 논리 연산", null)]
 			public bool OutputMergerLogicOp;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool UAVOnlyRenderingForcedSampleCount;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool DiscardAPIsSeenByDriver;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool FlagsForUpdateAndCopySeenByDriver;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ClearView;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool CopyWithOverlap;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ConstantBufferPartialUpdate;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ConstantBufferOffsetting;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MapNoOverwriteOnDynamicConstantBuffer;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MapNoOverwriteOnDynamicBufferSRV;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MultisampleRTVWithForcedSampleCountOne;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool SAD4ShaderInstructions;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ExtendedDoublesShaderInstructions;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ExtendedResourceSharing;
+
+			[MarshalAs(UnmanagedType.Bool)] public bool UAVOnlyRenderingForcedSampleCount;
+			[MarshalAs(UnmanagedType.Bool)] public bool DiscardAPIsSeenByDriver;
+			[MarshalAs(UnmanagedType.Bool)] public bool FlagsForUpdateAndCopySeenByDriver;
+			[MarshalAs(UnmanagedType.Bool)] public bool ClearView;
+			[MarshalAs(UnmanagedType.Bool)] public bool CopyWithOverlap;
+			[MarshalAs(UnmanagedType.Bool)] public bool ConstantBufferPartialUpdate;
+			[MarshalAs(UnmanagedType.Bool)] public bool ConstantBufferOffsetting;
+			[MarshalAs(UnmanagedType.Bool)] public bool MapNoOverwriteOnDynamicConstantBuffer;
+			[MarshalAs(UnmanagedType.Bool)] public bool MapNoOverwriteOnDynamicBufferSRV;
+			[MarshalAs(UnmanagedType.Bool)] public bool MultisampleRTVWithForcedSampleCountOne;
+			[MarshalAs(UnmanagedType.Bool)] public bool SAD4ShaderInstructions;
+			[MarshalAs(UnmanagedType.Bool)] public bool ExtendedDoublesShaderInstructions;
+			[MarshalAs(UnmanagedType.Bool)] public bool ExtendedResourceSharing;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_ARCHITECTURE_INFO
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("타일 기반 지연 렌더러", null)]
 			public bool TileBasedDeferredRenderer;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D9_OPTIONS
 		{
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool FullNonPow2TextureSupport;
+			[MarshalAs(UnmanagedType.Bool)] public bool FullNonPow2TextureSupport;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT
 		{
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool SupportsDepthAsTextureWithLessEqualComparisonFilter;
+			[MarshalAs(UnmanagedType.Bool)] public bool SupportsDepthAsTextureWithLessEqualComparisonFilter;
 		}
 
-
-		public enum D3D11_SHADER_MIN_PRECISION_SUPPORT
+		public enum D3D11_SHADER_MIN_PRECISION_SUPPORT : UINT
 		{
 			D3D11_SHADER_MIN_PRECISION_10_BIT = 0x1,
 			D3D11_SHADER_MIN_PRECISION_16_BIT = 0x2
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT
 		{
-			public UINT PixelShaderMinPrecision;
-			public UINT AllOtherShaderStagesMinPrecision;
+			[ItemDescription("픽셀셰이더의 최소 정밀도", null)]
+			public D3D11_SHADER_MIN_PRECISION_SUPPORT PixelShaderMinPrecision;
+
+			[ItemDescription("다른 모든 셰이더 스테이지의 최소 정밀도", null)]
+			public D3D11_SHADER_MIN_PRECISION_SUPPORT AllOtherShaderStagesMinPrecision;
 		}
 
 
@@ -350,43 +339,35 @@ namespace _3dprobe.Bridge
 			D3D11_TILED_RESOURCES_TIER_3 = 3
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS1
 		{
 			public D3D11_TILED_RESOURCES_TIER TiledResourcesTier;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MinMaxFiltering;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool ClearViewAlsoSupportsDepthOnlyFormats;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MapOnDefaultBuffers;
+			[MarshalAs(UnmanagedType.Bool)] public bool MinMaxFiltering;
+			[MarshalAs(UnmanagedType.Bool)] public bool ClearViewAlsoSupportsDepthOnlyFormats;
+			[MarshalAs(UnmanagedType.Bool)] public bool MapOnDefaultBuffers;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT
 		{
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool SimpleInstancingSupported;
+			[MarshalAs(UnmanagedType.Bool)] public bool SimpleInstancingSupported;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_MARKER_SUPPORT
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("GPU 프로파일링 기술", null)]
 			public bool Profile;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D9_OPTIONS1
 		{
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool FullNonPow2TextureSupported;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool DepthAsTextureWithLessEqualComparisonFilterSupported;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool SimpleInstancingSupported;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool TextureCubeFaceRenderTargetWithNonCubeDepthStencilSupported;
+			[MarshalAs(UnmanagedType.Bool)] public bool FullNonPow2TextureSupported;
+			[MarshalAs(UnmanagedType.Bool)] public bool DepthAsTextureWithLessEqualComparisonFilterSupported;
+			[MarshalAs(UnmanagedType.Bool)] public bool SimpleInstancingSupported;
+			[MarshalAs(UnmanagedType.Bool)] public bool TextureCubeFaceRenderTargetWithNonCubeDepthStencilSupported;
 		}
 
 
@@ -398,57 +379,66 @@ namespace _3dprobe.Bridge
 			D3D11_CONSERVATIVE_RASTERIZATION_TIER_3 = 3
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS2
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("픽셀 셰이더의 지정된 스텐실 참조 지원", null)]
 			public bool PSSpecifiedStencilRefSupported;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool TypedUAVLoadAdditionalFormats;
-			[MarshalAs (UnmanagedType.Bool)]
+
+			[MarshalAs(UnmanagedType.Bool)] public bool TypedUAVLoadAdditionalFormats;
+
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("정렬된 래스터라이저 뷰 지원", null)]
 			public bool ROVsSupported;
+
+			[ItemDescription("보수적 래스터라이제이션 단계", null)]
 			public D3D11_CONSERVATIVE_RASTERIZATION_TIER ConservativeRasterizationTier;
-			public D3D11_TILED_RESOURCES_TIER TiledResourcesTier;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool MapOnDefaultTextures;
-			[MarshalAs (UnmanagedType.Bool)]
-			public bool StandardSwizzle;
-			[MarshalAs (UnmanagedType.Bool)]
+
+			[ItemDescription("타일 리소스 단계", null)] public D3D11_TILED_RESOURCES_TIER TiledResourcesTier;
+			[MarshalAs(UnmanagedType.Bool)] public bool MapOnDefaultTextures;
+			[MarshalAs(UnmanagedType.Bool)] public bool StandardSwizzle;
+
+			[MarshalAs(UnmanagedType.Bool)]
+			[ItemDescription("통합 메모리 아키텍처", "통합 메모리 아키텍처를 통해 CPU와 GPU 간 데이터를 복사하지 않고 이용할 수 있습니다.")]
 			public bool UnifiedMemoryArchitecture;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS3
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("셰이더 피딩 래스터라이저 지원을 통한 뷰포트 및 렌더타겟 배열 색인", null)]
 			public bool VPAndRTArrayIndexFromAnyShaderFeedingRasterizer;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT
 		{
+			[ItemDescription("리소스 당 최대 GPU 가상 주소 비트 수", null)]
 			public UINT MaxGPUVirtualAddressBitsPerResource;
+
+			[ItemDescription("프로세스 당 최대 GPU 가상 주소 비트 수", null)]
 			public UINT MaxGPUVirtualAddressBitsPerProcess;
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS4
 		{
-			[MarshalAs (UnmanagedType.Bool)]
+			[MarshalAs(UnmanagedType.Bool)] [ItemDescription("확장된 NV12 공유 텍스처 지원", null)]
 			public bool ExtendedNV12SharedTextureSupported;
 		}
 
-		public enum D3D11_SHADER_CACHE_SUPPORT_FLAGS
+		[Flags]
+		public enum D3D11_SHADER_CACHE_SUPPORT_FLAGS : UINT
 		{
 			D3D11_SHADER_CACHE_SUPPORT_NONE = 0,
 			D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_INPROC_CACHE = 0x1,
 			D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE = 0x2
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_SHADER_CACHE
 		{
-			public UINT SupportFlags;
+			[ItemDescription("지원하는 셰이더 캐시 기능", null)]
+			public D3D11_SHADER_CACHE_SUPPORT_FLAGS SupportFlags;
 		}
 
 		public enum D3D11_SHARED_RESOURCE_TIER
@@ -459,10 +449,10 @@ namespace _3dprobe.Bridge
 			D3D11_SHARED_RESOURCE_TIER_3 = (D3D11_SHARED_RESOURCE_TIER_2 + 1),
 		}
 
-		[StructLayout (LayoutKind.Sequential)]
+		[StructLayout(LayoutKind.Sequential)]
 		public struct D3D11_FEATURE_DATA_D3D11_OPTIONS5
 		{
-			public D3D11_SHARED_RESOURCE_TIER SharedResourceTier;
+			[ItemDescription("공유 리소스 단계", null)] public D3D11_SHARED_RESOURCE_TIER SharedResourceTier;
 		}
 	}
 }

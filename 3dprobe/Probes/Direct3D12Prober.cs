@@ -160,68 +160,45 @@ namespace _3dprobe.Probes
 									D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_1_0_CORE => new Version(1, 0),
 									_ => new Version()
 								}
-							}
+							},
+							D3D12Options = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS),
+							D3D12Options1 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS1>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS1),
+							D3D12Options2 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS2>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS2),
+							D3D12Options3 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS3>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS3),
+							D3D12Options4 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS4>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS4),
+							D3D12Options5 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS5>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS5),
+							D3D12Options6 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS6>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS6),
+							Architecture = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ARCHITECTURE>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_ARCHITECTURE),
+							Architecture1 = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ARCHITECTURE1>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_ARCHITECTURE1),
+							GPUVirtualAddress =
+								GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT>(
+									d3dDevice,
+									D3D12_FEATURE.D3D12_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT),
+							ShaderModel = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SHADER_MODEL>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_SHADER_MODEL),
+							ShaderCache = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SHADER_CACHE>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_SHADER_CACHE),
+							ProtectedResourcedSession =
+								GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT>(
+									d3dDevice, D3D12_FEATURE.D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_SUPPORT),
+							RootSignature = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ROOT_SIGNATURE>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_ROOT_SIGNATURE),
+							ExistingHeaps = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_EXISTING_HEAPS>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_EXISTING_HEAPS),
+							Serialization = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SERIALIZATION>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_SERIALIZATION),
+							CrossNode = GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_CROSS_NODE>(d3dDevice,
+								D3D12_FEATURE.D3D12_FEATURE_CROSS_NODE)
 						};
-
-						probe.D3D12Options =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS);
-						probe.D3D12Options1 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS1> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS1);
-						probe.D3D12Options2 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS2> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS2);
-						probe.D3D12Options3 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS3> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS3);
-						probe.D3D12Options4 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS4> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS4);
-						probe.D3D12Options5 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS5> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS5);
-						probe.D3D12Options6 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_D3D12_OPTIONS6> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_D3D12_OPTIONS6);
-
-						probe.Architecture =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ARCHITECTURE>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_ARCHITECTURE);
-						probe.Architecture1 =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ARCHITECTURE1> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_ARCHITECTURE1);
-
-						probe.GPUVirtualAddress =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT);
-
-						probe.ShaderModel =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SHADER_MODEL> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_SHADER_MODEL);
-						probe.ShaderCache =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SHADER_CACHE> (d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_SHADER_CACHE);
-
-						probe.ProtectedResourcedSession =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT>(
-								d3dDevice, D3D12_FEATURE.D3D12_FEATURE_PROTECTED_RESOURCE_SESSION_SUPPORT);
-
-						probe.RootSignature =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_ROOT_SIGNATURE>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_ROOT_SIGNATURE);
-
-						probe.ExistingHeaps =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_EXISTING_HEAPS>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_EXISTING_HEAPS);
-
-						probe.Serialization =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_SERIALIZATION>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_SERIALIZATION);
-
-						probe.CrossNode =
-							GetFeatureSupportFromD3DDevice<D3D12_FEATURE_DATA_CROSS_NODE>(d3dDevice,
-								D3D12_FEATURE.D3D12_FEATURE_CROSS_NODE);
 
 						yield return probe;
 					}
@@ -242,9 +219,31 @@ namespace _3dprobe.Probes
 		{
 			var structSize = (uint) Marshal.SizeOf<T> ();
 			var structPtr = Marshal.AllocCoTaskMem ((int) structSize);
-			if (typeof(T) == typeof(D3D12_FEATURE_DATA_SHADER_MODEL))
-				Marshal.WriteInt32(structPtr, (int) D3D_SHADER_MODEL.D3D_SHADER_MODEL_6_5);
-			return d3dDevice.CheckFeatureSupport (feature, structPtr, structSize) != 0 ? default (T) : Marshal.PtrToStructure<T> (structPtr);
+
+			if (typeof (T) == typeof (D3D12_FEATURE_DATA_SHADER_MODEL))
+				Marshal.WriteInt32 (structPtr, (int) D3D_SHADER_MODEL.D3D_SHADER_MODEL_6_5);
+			if (typeof(T) == typeof(D3D12_FEATURE_DATA_ROOT_SIGNATURE))
+				Marshal.WriteInt32(structPtr, (int) D3D_ROOT_SIGNATURE_VERSION.D3D_ROOT_SIGNATURE_VERSION_1_1);
+
+			try
+			{
+				return d3dDevice.CheckFeatureSupport (feature, structPtr, structSize) != 0 ? default (T) : Marshal.PtrToStructure<T> (structPtr);
+			}
+			finally
+			{
+				Marshal.FreeCoTaskMem (structPtr);
+			}
+		}
+
+		public void GetFeatureSupportFromD3DDevice<T> (ID3D12Device d3dDevice, D3D12_FEATURE feature, ref T inout)
+		{
+			var structSize = (uint) Marshal.SizeOf<T> ();
+			var structPtr = Marshal.AllocCoTaskMem ((int) structSize);
+			Marshal.StructureToPtr (inout, structPtr, false);
+			inout = d3dDevice.CheckFeatureSupport (feature, structPtr, structSize) != 0
+				? default (T)
+				: Marshal.PtrToStructure<T> (structPtr);
+			Marshal.FreeCoTaskMem (structPtr);
 		}
 	}
 }

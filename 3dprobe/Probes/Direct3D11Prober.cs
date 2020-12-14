@@ -113,7 +113,7 @@ namespace _3dprobe.Probes
 						if (adapter.GetDesc (out var adapterDesc) != 0)
 							continue;
 
-						var probe = new D3D11Probe (adapterDesc.Description)
+						var probe = new D3D11Probe(adapterDesc.Description)
 						{
 							FeatureLevel =
 							{
@@ -131,79 +131,53 @@ namespace _3dprobe.Probes
 									D3D_FEATURE_LEVEL.D3D_FEATURE_LEVEL_1_0_CORE => new Version(1, 0),
 									_ => new Version()
 								}
-							}
+							},
+							Threading = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_THREADING>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_THREADING),
+							Doubles = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_DOUBLES>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_DOUBLES),
+							D3D10HardwareOptions =
+								GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS>(d3dDevice,
+									D3D11_FEATURE.D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS),
+							D3D11Options = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS),
+							Architecture = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_ARCHITECTURE_INFO>(
+								d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_ARCHITECTURE_INFO),
+							ShaderMinimumPrecisionSupport =
+								GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT>(
+									d3dDevice,
+									D3D11_FEATURE.D3D11_FEATURE_SHADER_MIN_PRECISION_SUPPORT),
+							D3D9Option = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_OPTIONS>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D9_OPTIONS),
+							D3D9ShadowSupport = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT>(
+								d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D9_SHADOW_SUPPORT),
+							D3D11Options1 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS1>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS1),
+							D3D9SimpleInstancingSupport =
+								GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT>(
+									d3dDevice,
+									D3D11_FEATURE.D3D11_FEATURE_D3D9_SIMPLE_INSTANCING_SUPPORT),
+							MarkerSupport = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_MARKER_SUPPORT>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_MARKER_SUPPORT),
+							D3D9Options1 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_OPTIONS1>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D9_OPTIONS1),
+							D3D11Options2 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS2>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS2),
+							D3D11Options3 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS3>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS3),
+							GPUVirtualAddressSupport =
+								GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT>(
+									d3dDevice,
+									D3D11_FEATURE.D3D11_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT),
+							D3D11Options4 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS4>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS4),
+							ShaderCache = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_SHADER_CACHE>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_SHADER_CACHE),
+							D3D11Options5 = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS5>(d3dDevice,
+								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS5)
 						};
-
-						probe.Threading =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_THREADING> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_THREADING);
-
-						probe.Doubles =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_DOUBLES> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_DOUBLES);
-
-						probe.D3D10HardwareOptions =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS);
-
-						probe.D3D11Options =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS);
-
-						probe.Architecture = GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_ARCHITECTURE_INFO> (d3dDevice,
-							D3D11_FEATURE.D3D11_FEATURE_ARCHITECTURE_INFO);
-
-						probe.ShaderMinimumPrecisionSupport =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_SHADER_MIN_PRECISION_SUPPORT);
-
-						probe.D3D9Option =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_OPTIONS> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D9_OPTIONS);
-
-						probe.D3D9ShadowSupport =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D9_SHADOW_SUPPORT);
-
-						probe.D3D11Options1 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS1> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS1);
-
-						probe.D3D9SimpleInstancingSupport =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D9_SIMPLE_INSTANCING_SUPPORT);
-
-						probe.MarkerSupport =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_MARKER_SUPPORT> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_MARKER_SUPPORT);
-
-						probe.D3D9Options1 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D9_OPTIONS1> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D9_OPTIONS1);
-
-						probe.D3D11Options2 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS2> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS2);
-
-						probe.D3D11Options3 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS3> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS3);
-
-						probe.GPUVirtualAddressSupport =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT);
-
-						probe.D3D11Options4 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS4>(d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS4);
-
-						probe.ShaderCache =
-						GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_SHADER_CACHE> (d3dDevice,
-							D3D11_FEATURE.D3D11_FEATURE_SHADER_CACHE);
-
-						probe.D3D11Options5 =
-							GetFeatureSupportFromD3DDevice<D3D11_FEATURE_DATA_D3D11_OPTIONS5> (d3dDevice,
-								D3D11_FEATURE.D3D11_FEATURE_D3D11_OPTIONS5);
 
 						yield return probe;
 					}
@@ -226,7 +200,25 @@ namespace _3dprobe.Probes
 		{
 			var structSize = (uint) Marshal.SizeOf<T> ();
 			var structPtr = Marshal.AllocCoTaskMem ((int) structSize);
-			return d3dDevice.CheckFeatureSupport (feature, structPtr, structSize) != 0 ? default (T) : Marshal.PtrToStructure<T> (structPtr);
+			try
+			{
+				return d3dDevice.CheckFeatureSupport (feature, structPtr, structSize) != 0 ? default (T) : Marshal.PtrToStructure<T> (structPtr);
+			}
+			finally
+			{
+				Marshal.FreeCoTaskMem(structPtr);
+			}
+		}
+
+		public void GetFeatureSupportFromD3DDevice<T>(ID3D11Device d3dDevice, D3D11_FEATURE feature, ref T inout)
+		{
+			var structSize = (uint) Marshal.SizeOf<T>();
+			var structPtr = Marshal.AllocCoTaskMem((int) structSize);
+			Marshal.StructureToPtr(inout, structPtr, false);
+			inout = d3dDevice.CheckFeatureSupport(feature, structPtr, structSize) != 0
+				? default(T)
+				: Marshal.PtrToStructure<T>(structPtr);
+			Marshal.FreeCoTaskMem(structPtr);
 		}
 	}
 }

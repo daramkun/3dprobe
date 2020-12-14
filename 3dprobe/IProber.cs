@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace _3dprobe
@@ -31,7 +32,6 @@ namespace _3dprobe
 	{
 		public string ItemName { get; }
 		public string ItemDescription { get; }
-		public Func<object, string> Converter { get; set; } = (obj) => obj.ToString();
 
 		public ItemDescriptionAttribute(string itemName, string itemDesc)
 		{
